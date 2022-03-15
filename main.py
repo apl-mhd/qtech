@@ -2,6 +2,9 @@ import heapq as hq
 from operator import le
 from turtle import distance
 
+# Note: last vertex to source vertex distance did not calculate
+
+
 graph = {
     'Rabat': ('Sueca', 1063),
     'Sueca': ('Rudow', 2656),
@@ -23,24 +26,17 @@ graph = {
     'Colombo': ('Meckenheim', 244),
     'Meckenheim': ('Hamburg', 502),
     'Hamburg': ('Rabat', 30),
-
-
 }
 
 visited = {}
 distance = {}
 
-
-
 def graph_init(source):
-
     for i in graph:
         visited[i] = False
         #distance[i] = 999999
-    
     #visited[source] = True
     distance[source] = 0
-
 
 
 def distance_calculate(source):
@@ -55,14 +51,13 @@ def distance_calculate(source):
         uwt = p[0] # u Weight
         visited[u] = True
         d = graph[u] # u to v vartex
-        v = d[0]
+        v = d[0] # vertex v
 
         if visited[v] == False:
             uvwt = d[1] # u to v weight
             total_wt = uwt + uvwt
             distance[v] = total_wt
             pq.append(tuple((total_wt, v)))
-
 
 distance_calculate('Rabat')
 
